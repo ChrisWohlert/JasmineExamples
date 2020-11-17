@@ -6,7 +6,7 @@ describe("the whole test suite", function () {
 
 	// Expectations
 	it("is an Expectation of the answer", function () {
-		expect(theAnswerToEverything).toBe(42);
+		expect(theAnswerToEverything).toEqual(42);
 	});
 
 	// Test Setup
@@ -19,12 +19,12 @@ describe("the whole test suite", function () {
 		actual = computeTheAnswerToTheUniverseAndEverything();
 
 		// Assert
-		expect(actual).toBe(expected);
-  });
+		expect(actual).toEqual(expected);
+	});
 });
 
 // Setup and Teardown
-describe("sets up and tears down", function () {
+describe("the set up and tear down functions", function () {
 	beforeEach(function () {
 		runBeforeEachSpec();
 	});
@@ -42,42 +42,39 @@ describe("sets up and tears down", function () {
   });
 });
 
-describe("mock Ajax", function (){
-  
-  beforeEach(function() {
-    jasmine.Ajax.install();
-  });
+describe("mock Ajax", function () {
 
-  afterEach(function() {
-    jasmine.Ajax.uninstall();
-  });
+	beforeEach(function () {
+		jasmine.Ajax.install();
+	});
 
-  if("filters large values", function (){
+	afterEach(function () {
+		jasmine.Ajax.uninstall();
+	});
 
-    //Arrange
-    jasmine.Ajax.stubRequest('/values').andReturn([1, 2, 3, 4, 5]);
-    const expected = [3, 4, 5];
+	it("filters large values", function () {
 
-    //Act
-    const actual = getLargeValues();
+		//Arrange
+		jasmine.Ajax.stubRequest('/values').andReturn([1, 2, 3, 4, 5]);
+		const expected = [3, 4, 5];
 
-    //Assert
-    expect(expected).toEqual(actual);
+		//Act
+		const actual = getLargeValues();
 
-  });
+		//Assert
+		expect(expected).toEqual(actual);
 
-  if("filters small posts ", function (){
+	});
 
-    //Act
-    const actual = postSmallValues();
+	it("filters small posts ", function () {
 
-    //Assert
-    const request = jasmine.Ajax.requests.mostRecent();
-    expect(request.url).toBe('/values');
-    expect(request.method).toBe('POST');
-    expect(request.data()).toEqual([1, 2]);
-  })
+		//Act
+		const actual = postSmallValues();
 
-
-
-})
+		//Assert
+		const request = jasmine.Ajax.requests.mostRecent();
+		expect(request.url).toBe('/values');
+		expect(request.method).toBe('POST');
+		expect(request.data()).toEqual([1, 2]);
+	});
+});
