@@ -20,7 +20,7 @@ describe("the whole test suite", function () {
 
 		// Assert
 		expect(actual).toBe(expected);
-	});
+  });
 });
 
 // Setup and Teardown
@@ -39,5 +39,45 @@ describe("sets up and tears down", function () {
 
 	afterAll(function () {
 		runAfterTestSuite();
-	});
+  });
 });
+
+describe("mock Ajax", function (){
+  
+  beforeEach(function() {
+    jasmine.Ajax.install();
+  });
+
+  afterEach(function() {
+    jasmine.Ajax.uninstall();
+  });
+
+  if("filters large values", function (){
+
+    //Arrange
+    jasmine.Ajax.stubRequest('/values').andReturn([1, 2, 3, 4, 5]);
+    const expected = [3, 4, 5];
+
+    //Act
+    const actual = getLargeValues();
+
+    //Assert
+    expect(expected).toEqual(actual);
+
+  });
+
+  if("filters small posts ", function (){
+
+    //Act
+    const actual = postSmallValues();
+
+    //Assert
+    const request = jasmine.Ajax.requests.mostRecent();
+    expect(request.url).toBe('/values');
+    expect(request.method).toBe('POST');
+    expect(request.data()).toEqual([1, 2]);
+  })
+
+
+
+})
