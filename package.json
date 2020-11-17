@@ -1,0 +1,20 @@
+{
+  "name": "jasmineexamples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": { "test": "jasmine" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://chriswohlert:Mulucoco89@github.com/ChrisWohlert/JasmineExamples.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisWohlert/JasmineExamples/issues"
+  },
+  "homepage": "https://github.com/ChrisWohlert/JasmineExamples#readme",
+  "devDependencies": {
+    "jasmine": "^3.6.3"
+  }
+}
